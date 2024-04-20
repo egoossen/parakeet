@@ -54,3 +54,9 @@ def test_under_budget(budget):
     budget.add_account('Expense', budgeted=10)
     with pytest.raises(ImbalanceException, match='Under-budget by 90'):
         budget.verify()
+
+def test_over_budget(budget):
+    budget.add_account('Income', is_income=True, budgeted=100)
+    budget.add_account('Expense', budgeted=110)
+    with pytest.raises(ImbalanceException, match='Over-budget by 10'):
+        budget.verify()
