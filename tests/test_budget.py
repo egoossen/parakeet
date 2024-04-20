@@ -8,16 +8,18 @@ import pytest
 
 from parakeet.budget import Budget
 
-def test_create_budget():
-    budget = Budget()
+@pytest.fixture
+def budget():
+    return Budget()
 
-def test_add_account():
-    budget = Budget()
+def test_create_budget(budget):
+    assert type(budget) == Budget
+
+def test_add_account(budget):
     budget.add_account('Expense')
     assert len(budget.get_accounts()) == 1
 
-def test_add_multiple_accounts():
-    budget = Budget()
+def test_add_multiple_accounts(budget):
     budget.add_account('Expense 1')
     budget.add_account('Expense 2')
     budget.add_account('Expense 3')
