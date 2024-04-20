@@ -30,6 +30,6 @@ class Budget():
             CREATE TABLE accounts(
                 id INTEGER PRIMARY KEY,
                 name TEXT NOT NULL,
-                budgeted FLOAT
+                budgeted REAL
             );
             """)
