@@ -32,3 +32,7 @@ def test_add_budgeted_expense(budget):
 def test_add_budgeted_income(budget):
     budget.add_account('Income',budgeted=1000)
     assert budget.get_accounts()[0] == ('Income',1000)
+
+def test_get_mismatch(budget):
+    budget.add_account('Expense',budgeted=100)
+    assert budget.get_mismatch() == -100

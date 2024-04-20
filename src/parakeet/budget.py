@@ -25,6 +25,10 @@ class Budget():
         res = self.__cur.execute("SELECT name, budgeted FROM accounts;")
         return res.fetchall()
 
+    def get_mismatch(self):
+        res = self.__cur.execute("SELECT budgeted FROM accounts;")
+        return -sum([account[0] for account in res.fetchall()])
+
     def __create_account_table(self):
         self.__cur.execute("""
             CREATE TABLE accounts(
