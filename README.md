@@ -2,7 +2,8 @@
 A python application to create and manage budgets.
 
 ## Installation
-TBD
+To install, use
+`pip install git+ssh://git@github.com/egoossen/rbsatools@v0.0.0`
 
 ## Usage
 TBD
