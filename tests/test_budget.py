@@ -11,12 +11,14 @@ from parakeet.budget import Budget
 def test_create_budget():
     budget = Budget()
 
-@pytest.mark.parametrize('account_list,num_accounts',[
-    (['Income'], 1),
-    (['Income','Expense'], 2)
-])
-def test_add_account(account_list, num_accounts):
+def test_add_account():
     budget = Budget()
-    for account in account_list:
-        budget.add_account(account)
-    assert len(budget.get_accounts()) == num_accounts
+    budget.add_account('Expense')
+    assert len(budget.get_accounts()) == 1
+
+def test_add_multiple_accounts():
+    budget = Budget()
+    budget.add_account('Expense 1')
+    budget.add_account('Expense 2')
+    budget.add_account('Expense 3')
+    assert len(budget.get_accounts()) == 3
