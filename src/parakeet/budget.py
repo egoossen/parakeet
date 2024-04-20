@@ -41,10 +41,11 @@ class Budget():
         return sum(income) - sum(expenses)
 
     def verify(self):
+        tolerance = 1e-4
         mismatch = self.get_mismatch()
-        if mismatch > 0:
+        if mismatch > tolerance:
             raise ImbalanceException(f'Under-budget by {mismatch}')
-        elif mismatch < 0:
+        elif mismatch < -tolerance:
             raise ImbalanceException(f'Over-budget by {-mismatch}')
 
     def __create_account_table(self):
