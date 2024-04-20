@@ -24,3 +24,7 @@ def test_add_multiple_accounts(budget):
     budget.add_account('Expense 2')
     budget.add_account('Expense 3')
     assert len(budget.get_accounts()) == 3
+
+def test_add_budgeted_expense(budget):
+    budget.add_account('Expense',budgeted=100)
+    assert budget.get_accounts()[0] == ('Expense',100)

@@ -12,17 +12,24 @@ class Budget():
         self.__cur = self.__con.cursor()
         self.__create_account_table()
 
-    def add_account(self,name:str) -> None:
-        self.__cur.execute("INSERT INTO accounts(name) VALUES(?);", [name])
+    def add_account(self,name:str, budgeted:float=0) -> None:
+        self.__cur.execute(
+            """
+            INSERT INTO accounts(name, budgeted)
+                VALUES(?, ?);
+            """,
+            [name, budgeted]
+        )
 
     def get_accounts(self) -> list:
-        res = self.__cur.execute("SELECT name FROM accounts;")
+        res = self.__cur.execute("SELECT name, budgeted FROM accounts;")
         return res.fetchall()
 
     def __create_account_table(self):
         self.__cur.execute("""
             CREATE TABLE accounts(
                 id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL
+                name TEXT NOT NULL,
+                budgeted FLOAT
             );
             """)
