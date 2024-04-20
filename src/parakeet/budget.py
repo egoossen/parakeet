@@ -4,12 +4,20 @@
 
 # Copyright (C) 2024 Elijah Goossen, ekgoossen@gmail.com
 
+import sqlite3
+
 class Budget():
-    def __init__(self):
-        self.__accounts = list()
+    def __init__(self, database:str=":memory:"):
+        self.__con = sqlite3.connect(database)
+        self.__cur = self.__con.cursor()
+        self.__create_account_table()
 
     def add_account(self,name:str) -> None:
-        self.__accounts.append(name)
+        self.__cur.execute("INSERT INTO accounts(name) VALUES(?);", [name])
 
     def get_accounts(self) -> list:
-        return self.__accounts
+        res = self.__cur.execute("SELECT name FROM accounts;")
+        return res.fetchall()
+
+    def __create_account_table(self):
+        self.__cur.execute("CREATE TABLE accounts(id, name);")
