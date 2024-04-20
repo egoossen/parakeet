@@ -4,7 +4,18 @@
 
 # Copyright (C) 2024 Elijah Goossen, ekgoossen@gmail.com
 
+import pytest
+
 from parakeet.budget import Budget
 
 def test_create_budget():
     budget = Budget()
+
+@pytest.mark.parametrize('account_list,num_accounts',[
+    (['Income'], 1)
+])
+def test_add_account(account_list, num_accounts):
+    budget = Budget()
+    for account in account_list:
+        budget.add_account(account)
+    assert len(budget.get_accounts()) == num_accounts

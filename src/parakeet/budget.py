@@ -5,4 +5,11 @@
 # Copyright (C) 2024 Elijah Goossen, ekgoossen@gmail.com
 
 class Budget():
-    pass
+    def __init__(self):
+        self.__accounts = list()
+
+    def add_account(self,name):
+        self.__accounts.append(name)
+
+    def get_accounts(self):
+        return self.__accounts
