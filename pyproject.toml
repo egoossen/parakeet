@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools","setuptools-git-versioning"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools-git-versioning]
+enabled = true
+
+[project]
+name = "parakeet"
+dynamic = ["version"]
+authors = [
+    { name="Elijah Goossen", email="ekgoossen@gmail.com" },
+]
+description = "A python application to create and manage budgets."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Operating System :: OS Independent",
+]
+
+# [project.urls]
+# "Homepage" = "https://github.com/pypa/sampleproject"
+# "Bug Tracker" = "https://guthub.com/pypa/sampleproject/issues"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
