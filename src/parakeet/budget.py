@@ -8,8 +8,8 @@ class Budget():
     def __init__(self):
         self.__accounts = list()
 
-    def add_account(self,name):
+    def add_account(self,name:str) -> None:
         self.__accounts.append(name)
 
-    def get_accounts(self):
+    def get_accounts(self) -> list:
         return self.__accounts
