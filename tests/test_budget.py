@@ -6,7 +6,10 @@
 
 import pytest
 
-from parakeet.budget import Budget
+from parakeet.budget import (
+    Budget,
+    ImbalanceException
+)
 
 @pytest.fixture
 def budget():
@@ -45,3 +48,9 @@ def test_get_mismatch(budget):
     budget.add_account('Income', is_income=True, budgeted=100)
     budget.add_account('Expense', budgeted=10)
     assert budget.get_mismatch() == 90
+
+def test_under_budget(budget):
+    budget.add_account('Income', is_income=True, budgeted=100)
+    budget.add_account('Expense', budgeted=10)
+    with pytest.raises(ImbalanceException, match='Under-budget by 90'):
+        budget.verify()

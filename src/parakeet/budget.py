@@ -6,6 +6,9 @@
 
 import sqlite3
 
+class ImbalanceException(Exception):
+    pass
+
 class Budget():
     def __init__(self, database:str=":memory:"):
         self.__con = sqlite3.connect(database)
@@ -36,6 +39,10 @@ class Budget():
         income = [acct[0] for acct in accounts if acct[1]]
         expenses = [acct[0] for acct in accounts if not acct[1]]
         return sum(income) - sum(expenses)
+
+    def verify(self):
+        if self.get_mismatch() > 0:
+            raise ImbalanceException(f'Under-budget by {self.get_mismatch()}')
 
     def __create_account_table(self):
         self.__cur.execute("""
