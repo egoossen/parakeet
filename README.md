@@ -3,7 +3,7 @@ A python application to create and manage budgets.
 
 ## Installation
 To install, use
-`pip install git+ssh://git@github.com/egoossen/rbsatools@v0.0.0`
+`pip install git+https://git@github.com/egoossen/rbsatools#egg=parakeet`
 
 ## Usage
 TBD
