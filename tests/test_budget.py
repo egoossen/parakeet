@@ -12,7 +12,8 @@ def test_create_budget():
     budget = Budget()
 
 @pytest.mark.parametrize('account_list,num_accounts',[
-    (['Income'], 1)
+    (['Income'], 1),
+    (['Income','Expense'], 2)
 ])
 def test_add_account(account_list, num_accounts):
     budget = Budget()
