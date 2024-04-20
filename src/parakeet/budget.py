@@ -20,4 +20,9 @@ class Budget():
         return res.fetchall()
 
     def __create_account_table(self):
-        self.__cur.execute("CREATE TABLE accounts(id, name);")
+        self.__cur.execute("""
+            CREATE TABLE accounts(
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL
+            );
+            """)
