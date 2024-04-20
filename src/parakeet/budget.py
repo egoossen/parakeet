@@ -12,17 +12,22 @@ class Budget():
         self.__cur = self.__con.cursor()
         self.__create_account_table()
 
-    def add_account(self,name:str, budgeted:float=0) -> None:
+    def add_account(self,
+            name:str,
+            is_income:bool=False,
+            budgeted:float=0) -> None:
         self.__cur.execute(
             """
-            INSERT INTO accounts(name, budgeted)
-                VALUES(?, ?);
+            INSERT INTO accounts(name, is_income, budgeted)
+                VALUES(?, ?, ?);
             """,
-            [name, budgeted]
+            [name, is_income, budgeted]
         )
 
     def get_accounts(self) -> list:
-        res = self.__cur.execute("SELECT name, budgeted FROM accounts;")
+        res = self.__cur.execute(
+            "SELECT name, is_income, budgeted FROM accounts;"
+        )
         return res.fetchall()
 
     def get_mismatch(self):
@@ -34,6 +39,7 @@ class Budget():
             CREATE TABLE accounts(
                 id INTEGER PRIMARY KEY,
                 name TEXT NOT NULL,
+                is_income BOOL,
                 budgeted REAL
             );
             """)
