@@ -1,4 +1,4 @@
-# Parakeet
+# Parakeet (A.K.A Budgie)
 A python application to create and manage budgets.
 
 ## Installation
