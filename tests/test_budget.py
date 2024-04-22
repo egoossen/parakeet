@@ -64,14 +64,17 @@ def test_over_budget(budget):
 def test_balanced_budget(budget):
     budget.add_account('Income', is_income=True, budgeted=100)
     budget.add_account('Expense', budgeted=100)
-    budget.verify() # Does not raise an error
+    budget.verify()
+    assert True # Does not raise an error
 
 def test_balanced_budget_positive_tolerance(budget):
     budget.add_account('Income', is_income=True, budgeted=100)
     budget.add_account('Expense', budgeted=100 + 1e-5)
-    budget.verify() # Does not raise an error
+    budget.verify()
+    assert True # Does not raise an error
 
 def test_balanced_budget_positive_tolerance(budget):
     budget.add_account('Income', is_income=True, budgeted=100)
     budget.add_account('Expense', budgeted=100 - 1e-5)
-    budget.verify() # Does not raise an error
+    budget.verify()
+    assert True # Does not raise an error
